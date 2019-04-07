@@ -1,3 +1,8 @@
+THIS REPOSITORY IS NOT MAINTAINED.
+=========================================================================
+The head maintainer of this repository has not respond more than one month,
+and there is no secondary maintainer.
+
 This repo introduces support the bundling/delivering universal-ctags<br/> 
 through the 'snap' mechanism/store - for more details see<br/>
 https://snapcraft.io.
