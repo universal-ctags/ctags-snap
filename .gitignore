@@ -1,0 +1,6 @@
+/parts/
+/prime/
+/snap/.snapcraft/
+/stage/
+/universal-ctags_*_*.snap
+
