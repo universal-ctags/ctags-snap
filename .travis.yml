@@ -1,0 +1,8 @@
+language: bash
+
+before_script:
+  - make setup build install
+
+script:
+  - bash make test
+
