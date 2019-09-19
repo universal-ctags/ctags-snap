@@ -11,45 +11,30 @@ from which it can be discovered and installed by millions of users.
 Test Procedure
 ==============
 
-Build the snap
---------------
+Consider doing it in a container
+--------------------------------
 
-Start a shell in a 'snapcrafting' container:
+Start a shell in a container named 'snapcrafting':
 
     sudo apt install -y lxd lxd-client
     lxc launch ubuntu:16.04 snapcrafting
     lxc exec snapcrafting -- su - ubuntu
 
-In the container, install snapcraft tools:
+Build the snap
+--------------
 
-    sudo snap install snapcraft --classic
-    sudo apt-get update # for installing build dependencies packages
-    sudo apt-install pkg-config
+In the container, do initial setup, once only:
 
-Get this repo source:
+    make setup
 
-    git clone https://github.com/universal-ctags/ctags-snap.git
-    cd ctags-snap
+Then build the snap:
 
-Build the snap:
+    make build
 
-    snapcraft
+And run the test:
 
-This should create output named something like
-'_universal-ctags\_0.1.1\_amd64.snap_'.
+    make test
 
-Install from the local file
----------------------------
-
-    $ sudo snap install universal-ctags\_0.1.1_amd64.snap --dangerous
-
-Use the installed executable
-----------------------------
-
-Use the installed executable to generate a tags file, and use that file:
-
-    universal-ctags -R
-    vim -t main
 
 Alias executable to 'ctags'
 ---------------------------
@@ -59,4 +44,8 @@ End users can
 the 'universal-ctags' executable to 'ctags':
 
     sudo snap alias universal-ctags ctags
+
+A request has been put into the snap store to provide this alias
+automatically:
+
 
