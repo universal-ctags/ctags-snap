@@ -1,6 +1,5 @@
-
 help:
-	@echo "targets include 'setup', 'build' and 'test'."
+	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-7s\033[0m %s\n", $$1, $$2}'
 
 /tmp/universal-ctags.setup:
 	sudo snap install snapcraft --classic
@@ -8,7 +7,7 @@ help:
 	sudo apt install pkg-config
 	touch /tmp/universal-ctags.setup
 
-setup: /tmp/universal-ctags.setup
+setup: /tmp/universal-ctags.setup ## Install snap build dependencies.
 
 /tmp/universal-ctags.build:
 	snapcraft
@@ -16,9 +15,9 @@ setup: /tmp/universal-ctags.setup
 	sudo snap install universal-ctags_0.1.1_amd64.snap --dangerous
 	touch /tmp/universal-ctags.build
 
-build: /tmp/universal-ctags.build
+build: /tmp/universal-ctags.build ## Build and install the snap.
 
-test:
+test: ## Test the installed snap.
 	# Use the installed snap
 	universal-ctags -R sample
 	# If we didn't generate a correct tags file
@@ -36,4 +35,6 @@ clean:
 ifndef VERBOSE
 .SILENT:
 endif
+
+.PHONY: clean help test
 
