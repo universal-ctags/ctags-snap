@@ -11,10 +11,9 @@ from which it can be discovered and installed by millions of users.
 Test Procedure
 --------------
 
-    make build install test
+    make setup build install test
 
-This takes many minutes the first time it is run. Subsequent runs are
-faster.
+This a few minutes the first time. Subsequent runs are faster.
 
 Alias executable to 'ctags'
 ---------------------------
