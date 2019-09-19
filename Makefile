@@ -23,7 +23,7 @@ test: ## Test the installed snap.
 
 clean: ## Uninstall snap, remove built snap files
 	sudo snap remove universal-ctags
-	rm -rf universal-ctags_*_amd64.snap
+	git clean -fd
 
 # run 'make VERBOSE=1' to switch off SILENT
 ifndef VERBOSE
