@@ -4,8 +4,8 @@ help: ## Display this help
 	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-7s\033[0m %s\n", $$1, $$2}'
 
 setup:
-	sudo snap install multipass
-	sudo snap install snapcraft --classic
+	sudo snap install --beta multipass
+	sudo snap install --classic snapcraft
 
 universal-ctags_$(version)_amd64.snap: snap/snapcraft.yaml
 	snapcraft
