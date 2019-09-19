@@ -1,14 +1,18 @@
 version=$(shell grep '^version:' snap/snapcraft.yaml | cut -d"'" -f2)
 
-help: ## Display this help
+help: ## Display help for all make targets.
 	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-7s\033[0m %s\n", $$1, $$2}'
 
-setup:
+setup: ## Install dependencies (ie snapcraft).
 	sudo snap install --beta --classic multipass
 	sudo snap install --classic snapcraft
 
+refresh: ## Update dependencies.
+	sudo snap refresh --beta multipass
+	sudo snap refresh snapcraft
+
 universal-ctags_$(version)_amd64.snap: snap/snapcraft.yaml
-	snapcraft
+	snapcraft build --destructive-mode
 
 build: universal-ctags_$(version)_amd64.snap ## Build the snap file.
 
@@ -25,7 +29,7 @@ test: ## Test the installed snap.
 		echo "OK" >&2; \
 	fi
 
-clean: ## Uninstall snap, remove built snap files
+clean: ## Uninstall snap, remove built snap files.
 	sudo snap remove universal-ctags
 	git clean -fd
 
