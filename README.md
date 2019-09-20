@@ -13,9 +13,14 @@ from which it can be discovered and installed by millions of users.
 Test Procedure
 --------------
 
+Commits to this repo are [automatically tested on Travis](https://travis-ci.org/universal-ctags/ctags-snap).
+You can run the same test locally using:
+
     make setup build install test
 
-This a few minutes the first time. Subsequent runs are faster.
+This takes a few minutes the first time. Subsequent runs are faster.
+
+Run `make` with no target to see documentation of the available targets.
 
 Alias executable to 'ctags'
 ---------------------------
