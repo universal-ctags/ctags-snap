@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/universal-ctags/ctags-snap.svg?branch=master)](https://travis-ci.org/universal-ctags/ctags-snap)
+
 Snap packaging for Universal Ctags
 ==================================
 

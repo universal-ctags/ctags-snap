@@ -26,5 +26,5 @@ parts:
     source: https://github.com/universal-ctags/ctags.git
     plugin: autotools
     build-packages: [pkg-config]
-    stage-pacakges: [libxml2]
+    stage-packages: [libxml2]
 
