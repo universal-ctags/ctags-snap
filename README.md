@@ -14,7 +14,8 @@ Test Procedure
 --------------
 
 Commits to this repo are [automatically tested on Travis](https://travis-ci.org/universal-ctags/ctags-snap).
-You can run the same test locally using:
+
+On Ubuntu 19.04 (and possibly others), you can run the same test locally using:
 
     make setup build install test
 
