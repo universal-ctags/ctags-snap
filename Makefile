@@ -1,5 +1,3 @@
-version=$(shell grep '^version:' snap/snapcraft.yaml | cut -d"'" -f2)
-
 # Snapcraft builds on a VM by default, to avoid installing components that
 # might not be compatible with the host OS.
 snapcraft_flags=
@@ -20,13 +18,12 @@ refresh: ## Update build dependencies.
 	sudo snap refresh --beta multipass
 	sudo snap refresh snapcraft
 
-universal-ctags_$(version)_amd64.snap: snap/snapcraft.yaml
+build: snap/snapcraft.yaml ## Build the snap file.
+	rm -f universal-ctags_*_amd64.snap
 	snapcraft $(snapcraft_flags)
 
-build: universal-ctags_$(version)_amd64.snap ## Build the snap file.
-
 install: ## Install the snap from the local file.
-	sudo snap install universal-ctags_$(version)_amd64.snap --dangerous
+	sudo snap install universal-ctags_*_amd64.snap --dangerous
 	sudo snap alias universal-ctags ctags
 
 test: ## Test the installed snap.
@@ -39,7 +36,7 @@ test: ## Test the installed snap.
 		exit 1; \
 	fi
 
-clean: ## Uninstall snap, remove built snap files.
+clean: ## Remove intermediate and snap files.
 	rm -rf parts prime stage universal-ctags_*_amd64.snap
 
 # run 'make VERBOSE=1' to switch off SILENT

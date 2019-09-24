@@ -1,5 +1,4 @@
 name: universal-ctags
-version: '0.2.0'
 summary: Parse source code to build an index of defined symbols.
 description: |
   ctags parses source code to produce an index file, mapping the names of
@@ -9,6 +8,7 @@ description: |
   
   Universal Ctags is a fork of the venerable Exuberant Ctags, that adds
   additional features, including support for more languages.
+adopt-info: universal-ctags
 
 base: core18
 grade: stable
@@ -27,4 +27,7 @@ parts:
     plugin: autotools
     build-packages: [pkg-config]
     stage-packages: [libxml2]
+    override-pull: |
+      snapcraftctl pull
+      snapcraftctl set-version "0.2.$(git show --format=%ci\ %h -s | cut -d' ' -f1-2,4 | tr ' ' '+')"
 
