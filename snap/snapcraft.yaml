@@ -29,5 +29,5 @@ parts:
     stage-packages: [libxml2]
     override-pull: |
       snapcraftctl pull
-      snapcraftctl set-version "0.2.$(git show --format=%ci\ %h -s | cut -d' ' -f1-2,4 | tr ' ' '+')"
+      snapcraftctl set-version "0.2.$(date -u +%Y-%m-%d+%H:%M:%S)+$(git show -s --format=%h)"
 
