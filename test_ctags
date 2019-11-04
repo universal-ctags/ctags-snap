@@ -1,0 +1,51 @@
+#!/usr/bin/env bash
+
+# Test the installed universal_ctags
+
+set -e
+
+config="$HOME/.ctags.d/python.ctags"
+backup="${config}.backup"
+output="sample/tags"
+
+ctags="universal-ctags"
+
+# Given the original config file is backed up
+if [ -f ${config} ] ; then
+  mv -f ${config} ${backup}
+else
+  rm -f ${backup}
+fi
+# and it'll get restored when this scenario ends
+function clean {
+  if [ -f ${backup} ] ; then
+    mv ${backup} ${config}
+  else
+    rm -f ${config}
+  fi
+}
+trap clean EXIT
+# and the new config turns off Classes in the output
+echo "--python-kinds=-c" >${config}
+
+# When we run ctags on some sample source code
+(
+  cd sample
+  ${ctags} -V -R .
+)
+
+# Then the output file should contain func 'my_func'
+if ! grep -q -E '^my_func' ${output} ; then
+    echo "FAIL: 'tags' file should contain function 'my_func'" >&2
+    cat ${output}
+    exit 1
+fi
+# and should not contain class 'MyClass' (see ${config} above)
+if grep -q -E '^MyClass' ${output} ; then
+   echo "FAIL: '${output}' file should not contain class 'MyClass'" >&2
+   cat ${output}
+   exit 1
+fi
+
+echo "OK" >&2
+

@@ -2,8 +2,8 @@ name: universal-ctags
 summary: Parse source code to build an index of defined symbols.
 description: |
   ctags parses source code to produce an index file, mapping the names of
-  symbols, like functions, classes, and variables, to the location where
-  the symbol is defined. This index is used by editors like Vim and Emacs
+  symbols, like functions, classes, and variables, to the locations where
+  they are defined. This index is used by editors like Vim and Emacs
   to enable feaures like 'go to definition'.
   
   Universal Ctags is a fork of the venerable Exuberant Ctags, that adds
@@ -14,11 +14,15 @@ base: core18
 grade: stable
 confinement: strict
 
+plugs:
+  config-universal-ctags:
+    interface: personal-files
+    read: [$HOME/.ctags.d/python.ctags]
+
 apps:
   universal-ctags:
     command: ctags
-    plugs:
-      - home
+    plugs: [home, config-universal-ctags]
 
 parts:
   universal-ctags:
@@ -29,5 +33,5 @@ parts:
     stage-packages: [libxml2]
     override-pull: |
       snapcraftctl pull
-      snapcraftctl set-version "0.2.$(date -u +%Y-%m-%d+%H:%M:%S)+$(git show -s --format=%h)"
+      snapcraftctl set-version "0.$(date -u +%Y-%m-%d+%H:%M:%S)+$(git show -s --format=%h)"
 

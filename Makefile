@@ -26,17 +26,11 @@ install: ## Install the snap from the local file.
 	sudo snap install universal-ctags_*_amd64.snap --dangerous
 
 test: ## Test the installed snap.
-	universal-ctags -R sample
-	# If the generated tags file looks valid
-	if grep -E '^myfunc' tags >/dev/null; then \
-		echo "OK" >&2; \
-	else \
-		echo "FAILED" >&2; \
-		exit 1; \
-	fi
+	./test_ctags
 
 clean: ## Remove intermediate and snap files.
 	rm -rf parts prime stage universal-ctags_*_amd64.snap
+	snapcraft clean
 
 # run 'make VERBOSE=1' to switch off SILENT
 ifndef VERBOSE
