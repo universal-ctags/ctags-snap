@@ -17,7 +17,7 @@ confinement: strict
 plugs:
   config-universal-ctags:
     interface: personal-files
-    read: [$HOME/.ctags.d/python.ctags]
+    read: [$HOME/.ctags.d, $HOME/.ctags.d/python.ctags]
 
 apps:
   universal-ctags:

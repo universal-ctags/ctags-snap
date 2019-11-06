@@ -36,15 +36,26 @@ echo "--python-kinds=-c" >${config}
 
 # Then the output file should contain func 'my_func'
 if ! grep -q -E '^my_func' ${output} ; then
+    echo
     echo "FAIL: 'tags' file should contain function 'my_func'" >&2
+    echo
+    echo "${output}:"
     cat ${output}
+    echo
     exit 1
 fi
 # and should not contain class 'MyClass' (see ${config} above)
 if grep -q -E '^MyClass' ${output} ; then
-   echo "FAIL: '${output}' file should not contain class 'MyClass'" >&2
-   cat ${output}
-   exit 1
+    echo
+    echo "FAIL: '${output}' file should not contain class 'MyClass'" >&2
+    echo
+    echo "${config}:"
+    cat ${config}
+    echo
+    echo "${output}:"
+    cat ${output}
+    echo
+    exit 1
 fi
 
 echo "OK" >&2
