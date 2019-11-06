@@ -2,9 +2,10 @@
 
 # Test the installed universal_ctags
 
-set -e -x
+set -e # exit on error
+# set -x # debug output
 
-ctags="ctags" # check that the alias has been applied
+ctags="/snap/bin/ctags"
 config_dir="$HOME/.ctags.d"
 config="${config_dir}/python.ctags"
 backup="${config_dir}.backup"
@@ -38,8 +39,6 @@ echo "--python-kinds=-c" >${config}
 # When we run ctags on some sample source code
 (
   cd sample
-  which -a ${ctags}
-  ${ctags} --version
   ${ctags} -R .
 )
 
