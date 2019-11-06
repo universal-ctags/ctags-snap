@@ -21,8 +21,8 @@ plugs:
 
 apps:
   universal-ctags:
-    command: ctags
     plugs: [home, dot-ctags]
+    command: universal-ctags-wrapper
 
 parts:
   universal-ctags:
@@ -34,4 +34,18 @@ parts:
     override-pull: |
       snapcraftctl pull
       snapcraftctl set-version "0.$(date -u +%Y-%m-%d+%H:%M:%S)+$(git show -s --format=%h)"
+    override-prime: |
+      snapcraftctl prime
+      echo >universal-ctags-wrapper '#!/usr/bin/env bash
+      # Wrapper around the ctags executable,
+      # to set HOME back to the user'"'"'s home dir,
+      # so that ctags can read config files in ~/.ctags.d/
+      # (Contained snaps set HOME to $SNAP_USER_DATA instead.)
+      dir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
+      HOME=$(python3 -SIBc '"'"'
+      import os, pwd
+      print(pwd.getpwuid(os.getuid()).pw_dir)
+      '"'"') $dir/bin/ctags $@
+      '
+      chmod a+x universal-ctags-wrapper
 

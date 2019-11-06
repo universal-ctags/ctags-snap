@@ -5,7 +5,7 @@
 set -e
 
 ctags="universal-ctags"
-config_dir="$HOME/snap/universal-ctags/current/.ctags.d"
+config_dir="$HOME/.ctags.d"
 config="${config_dir}/python.ctags"
 backup="${config_dir}.backup"
 output="sample/tags"
