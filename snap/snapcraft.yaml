@@ -15,14 +15,14 @@ grade: stable
 confinement: strict
 
 plugs:
-  config-universal-ctags:
+  dot-ctags:
     interface: personal-files
-    read: [$HOME/.ctags.d, $HOME/.ctags.d/python.ctags]
+    read: [$HOME/.ctags.d]
 
 apps:
   universal-ctags:
     command: ctags
-    plugs: [home, config-universal-ctags]
+    plugs: [home, dot-ctags]
 
 parts:
   universal-ctags:

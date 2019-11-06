@@ -4,40 +4,47 @@
 
 set -e
 
-config="$HOME/.ctags.d/python.ctags"
-backup="${config}.backup"
+ctags="universal-ctags"
+config_dir="$HOME/snap/universal-ctags/current/.ctags.d"
+config="${config_dir}/python.ctags"
+backup="${config_dir}.backup"
 output="sample/tags"
 
-ctags="universal-ctags"
+red='\e[1;31m'
+green='\e[1;32m'
+reset='\e[0m'
 
-# Given the original config file is backed up
-if [ -f ${config} ] ; then
-  mv -f ${config} ${backup}
+# Given the original config dir is backed up
+if [ -d ${config_dir} ] ; then
+  rm -rf ${backup}
+  mv ${config_dir} ${backup}
 else
-  rm -f ${backup}
+  rm -rf ${backup}
 fi
 # and it'll get restored when this scenario ends
 function clean {
-  if [ -f ${backup} ] ; then
-    mv ${backup} ${config}
+  if [ -d ${backup} ] ; then
+    rm -rf ${config_dir}
+    mv ${backup} ${config_dir}
   else
-    rm -f ${config}
+    rm -rf ${config_dir}
   fi
 }
 trap clean EXIT
 # and the new config turns off Classes in the output
+mkdir -p ${config_dir}
 echo "--python-kinds=-c" >${config}
 
 # When we run ctags on some sample source code
 (
   cd sample
-  ${ctags} -V -R .
+  ${ctags} -R .
 )
 
 # Then the output file should contain func 'my_func'
 if ! grep -q -E '^my_func' ${output} ; then
     echo
-    echo "FAIL: 'tags' file should contain function 'my_func'" >&2
+    echo -e "${red}FAIL${reset}: 'tags' file should contain function 'my_func'" >&2
     echo
     echo "${output}:"
     cat ${output}
@@ -47,7 +54,7 @@ fi
 # and should not contain class 'MyClass' (see ${config} above)
 if grep -q -E '^MyClass' ${output} ; then
     echo
-    echo "FAIL: '${output}' file should not contain class 'MyClass'" >&2
+    echo -e "${red}FAIL${reset}: '${output}' file should not contain class 'MyClass'" >&2
     echo
     echo "${config}:"
     cat ${config}
@@ -58,5 +65,5 @@ if grep -q -E '^MyClass' ${output} ; then
     exit 1
 fi
 
-echo "OK" >&2
+echo -e "${green}OK${reset}" >&2
 
