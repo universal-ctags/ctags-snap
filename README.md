@@ -7,7 +7,8 @@ This repo packages universal-ctags as a [snap](https://snapcraft.io/docs).
 Snaps bundle an application and its dependencies in a package that can be
 installed without modification across Linux distributions.
 
-This snap is published to the [snap store](https://snapcraft.io/store),
+This snap is published to the
+[snap store](https://snapcraft.io/universal-ctags),
 from which it can be discovered and installed by millions of users.
 
 Installing
