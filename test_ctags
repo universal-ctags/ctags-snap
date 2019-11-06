@@ -38,6 +38,8 @@ echo "--python-kinds=-c" >${config}
 # When we run ctags on some sample source code
 (
   cd sample
+  which -a ${ctags}
+  ${ctags} --version
   ${ctags} -R .
 )
 
