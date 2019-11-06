@@ -6,6 +6,7 @@ set -e # exit on error
 # set -x # debug output
 
 ctags="/snap/bin/ctags"
+
 config_dir="$HOME/.ctags.d"
 config="${config_dir}/python.ctags"
 backup="${config_dir}.backup"
@@ -31,6 +32,7 @@ function clean {
     rm -rf ${config_dir}
   fi
 }
+
 trap clean EXIT
 # and the new config turns off Classes in the output
 mkdir -p ${config_dir}
@@ -45,17 +47,18 @@ echo "--python-kinds=-c" >${config}
 # Then the output file should contain func 'my_func'
 if ! grep -q -E '^my_func' ${output} ; then
     echo
-    echo -e "${red}FAIL${reset}: 'tags' file should contain function 'my_func'" >&2
+    echo -e "${red}FAIL${reset}: '${output}' should contain function 'my_func'" >&2
     echo
     echo "${output}:"
     cat ${output}
     echo
     exit 1
 fi
-# and should not contain class 'MyClass' (see ${config} above)
+# and should not contain class 'MyClass'
+# (disabled by user-level config in ${config} above)
 if grep -q -E '^MyClass' ${output} ; then
     echo
-    echo -e "${red}FAIL${reset}: '${output}' file should not contain class 'MyClass'" >&2
+    echo -e "${red}FAIL${reset}: '${output}' should not contain class 'MyClass'" >&2
     echo
     echo "${config}:"
     cat ${config}

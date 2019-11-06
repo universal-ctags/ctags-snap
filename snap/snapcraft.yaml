@@ -26,15 +26,22 @@ description: |
   Limitations
   -----------
   
-  Compared to universal-ctags installed using apt, this snap currently has some
-  limitations:
+  Compared to universal-ctags installed using apt,
+  this snap currently has some limitations:
   
-  1. It can only access files that are both within the user's $HOME
-     directory, and are not in hidden (with dot prefixed names.) This applies
-     to both read source code, written tags files, and configuration files
-     specified using the '--options' or '--options-maybe' args.
-  2. The 'man' pages are not installed.
-  3. The 'etags' executable alias (which defaults to Emacs style tags files)
+  1. It cannot scan source that is outside the user's $HOME directory,
+     or is in hidden (dot prefixed) directories or files.
+  2. Configuration in the user's `~/.ctags.d/` is read as expected.
+     However, projects' hidden `.ctags.d` directories are not read.
+     Also, configuration in other places, specified using `--options`
+     or `--options-maybe`, will not be read if they are outside the
+     user's HOME, or in a hidden file or directory.
+  3. Tag files written using '-f' options or similar may not be outside
+     the user's $HOME directory, nor in a hidden file or directory at
+     top level in the $HOME directory. (You can work around this by
+     using `-f -` and redirecting stdout to the required location.)
+  4. The univeral-ctags 'man' pages are not installed.
+  5. The 'etags' executable alias (which defaults to Emacs style tags files)
      is not installed.
 
   If these or other issues cause you problems, let me know at
