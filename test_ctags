@@ -2,7 +2,7 @@
 
 # Test the installed universal_ctags
 
-set -e
+set -e -x
 
 ctags="ctags" # check that the alias has been applied
 config_dir="$HOME/.ctags.d"
