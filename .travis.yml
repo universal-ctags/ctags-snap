@@ -1,7 +1,7 @@
 language: bash
 
 before_script:
-  - make setup build install VERBOSE=1
+  - make setup build install configure VERBOSE=1
 
 script:
   - make test VERBOSE=1
