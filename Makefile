@@ -6,7 +6,7 @@ ifeq ($(CI),true)
 	snapcraft_flags = --destructive-mode
 endif
 
-help: ## Display help for all make targets.
+help: ## Display help for documented make targets.
 	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | \
 		awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-7s\033[0m %s\n", $$1, $$2}'
 
@@ -23,7 +23,11 @@ build: snap/snapcraft.yaml ## Build the snap file.
 	snapcraft $(snapcraft_flags)
 
 install: ## Install the snap from the local file.
-	sudo snap install universal-ctags_*_amd64.snap --dangerous
+	sudo snap install --dangerous universal-ctags_*_amd64.snap
+
+configure: ## post-install snap configuration
+	sudo snap alias universal-ctags ctags
+	sudo snap connect universal-ctags:dot-ctags
 
 remove: ## Remove the installed snap
 	sudo snap remove universal-ctags

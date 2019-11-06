@@ -1,5 +1,6 @@
 name: universal-ctags
 summary: Parse source code to build an index of defined symbols.
+adopt-info: universal-ctags
 description: |
   ctags parses source code to produce an index file, mapping the names of
   symbols, like functions, classes, and variables, to the locations where
@@ -8,7 +9,36 @@ description: |
   
   Universal Ctags is a fork of the venerable Exuberant Ctags, that adds
   additional features, including support for more languages.
-adopt-info: universal-ctags
+  
+  # Usage
+  
+  When installed, this snap provides executable `universal-ctags`,
+  and alias `ctags`.
+  
+  In order to read config from files under ~/.ctags.d/,
+  you need to give the snap permission:
+  
+      sudo snap connect universal-ctags:dot-ctags
+  
+  See ctags online useage documentation at
+  http://docs.ctags.io/en/latest/man-pages.html
+  
+  Limitations
+  -----------
+  
+  Compared to universal-ctags installed using apt, this snap currently has some
+  limitations:
+  
+  1. It can only access files that are both within the user's $HOME
+     directory, and are not in hidden (with dot prefixed names.) This applies
+     to both read source code, written tags files, and configuration files
+     specified using the '--options' or '--options-maybe' args.
+  2. The 'man' pages are not installed.
+  3. The 'etags' executable alias (which defaults to Emacs style tags files)
+     is not installed.
+
+  If these or other issues cause you problems, let me know at
+  https://github.com/universal-ctags/ctags-snap/issues
 
 base: core18
 grade: stable

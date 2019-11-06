@@ -10,29 +10,35 @@ installed without modification across Linux distributions.
 This snap is published to the [snap store](https://snapcraft.io/store),
 from which it can be discovered and installed by millions of users.
 
-Test Procedure
---------------
+Installing
+----------
+
+To install the latest relased snap from the snapstore:
+
+    sudo snap install universal-ctags
+
+Or to install a build from the latest commit:
+
+    sudo snap install --edge universal-ctags
+
+Usage
+-----
+
+For usage instructions, see end-user docs in snap/snapcraft.yaml, or at:
+https://snapcraft.io/universal-ctags
+
+Hacking
+-------
 
 Commits to this repo are [automatically tested on Travis](https://travis-ci.org/universal-ctags/ctags-snap).
 
 On Ubuntu 19.04 (and possibly others), you can run the same test locally using:
 
-    make setup build install test
+    make setup build install configure test
 
-This takes a few minutes the first time. Subsequent runs are faster.
+This takes a few minutes the first time.
+Subsequent runs are faster.
+Target 'setup' only needs to be done once.
 
 Run `make` with no target to see documentation of the available targets.
-
-Alias executable to 'ctags'
----------------------------
-
-End users can
-[alias](https://docs.snapcraft.io/commands-and-aliases/3950)
-the 'universal-ctags' executable to 'ctags':
-
-    sudo snap alias universal-ctags ctags
-
-A request has been put into the snap store to provide this alias
-automatically:
-https://forum.snapcraft.io/t/universal-ctags-requests-alias-ctags/13305
 
