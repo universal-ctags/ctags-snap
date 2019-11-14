@@ -10,39 +10,56 @@ description: |
   Universal Ctags is a fork of the venerable Exuberant Ctags, that adds
   additional features, including support for more languages.
   
-  *Usage*
+  ## Usage
   
   When installed, this snap provides executable `universal-ctags`,
   and alias `ctags`.
   
-  In order to read config from files under ~/.ctags.d/,
-  you need to give the snap permission:
+  In order to read config from files under `~/.ctags.d/`,
+  you need to give the snap permission.
+  This should be automated imminently, but for now:
   
       sudo snap connect universal-ctags:dot-ctags
   
   See ctags online useage documentation at
-  http://docs.ctags.io/en/latest/man-pages.html
+  http://docs.ctags.io/en/latest/man/ctags.1.html
   
-  **Limitations**
+  ## Limitations
   
-  Compared to universal-ctags installed using apt,
-  this snap currently has some limitations:
+  Compared to universal-ctags installed using apt, or compiled from source,
+  this snap currently has some limitations, introduced by snap security
+  restrictions:
   
-  1. It cannot scan source that is outside the user's $HOME directory,
-     or is in hidden (dot prefixed) directories or files.
-  2. Configuration in the user's `~/.ctags.d/` is read as expected.
-     However, projects' hidden `.ctags.d` directories are not read.
-     Also, configuration in other places, specified using `--options`
+  1. Source files cannot be scanned if they are:
+  
+     * Outside the user's $HOME directory, or
+     * In a top-level hidden directory, eg. `~/.src`.
+  
+     However, it can scan source in lower-level hidden directories, eg.
+     `~/proj/.src`.
+  
+  2. Config is usually read from the following directories:
+  
+     * User's `~/.ctags.d/` is read as expected. (But see the note
+       in 'Usage' about giving the snap permission.)
+     * Current directory's `ctags.d` is not read by default,
+       but the '--options' arg can be used to read from it.
+     * Current directory's `.ctags.d` cannot be read.
+  
+  3. Configuration in other places, specified using `--options`
      or `--options-maybe`, will not be read if they are outside the
-     user's HOME, or in a hidden file or directory.
-  3. Tag files written using '-f' options or similar may not be outside
+     user's HOME, or in a top-level hidden directory.
+  
+  4. Tag files written using '-f' options or similar may not be outside
      the user's $HOME directory, nor in a hidden file or directory at
      top level in the $HOME directory. (You can work around this by
      using `-f -` and redirecting stdout to the required location.)
-  4. The univeral-ctags 'man' pages are not installed.
-  5. The 'etags' executable alias (which defaults to Emacs style tags files)
+  
+  5. The universal-ctags 'man' pages are not installed.
+  
+  6. The 'etags' executable alias (which defaults to Emacs style tags files)
      is not installed.
-
+  
   If these or other issues cause you problems, let me know at
   https://github.com/universal-ctags/ctags-snap/issues
 
