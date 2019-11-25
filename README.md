@@ -7,29 +7,16 @@ This repo packages universal-ctags as a [snap](https://snapcraft.io/docs).
 Snaps bundle an application and its dependencies in a package that can be
 installed without modification across Linux distributions.
 
-This snap is published to the
+For installation and usage instructions, see this snap's entry in the
 [snap store](https://snapcraft.io/universal-ctags),
-from which it can be discovered and installed by millions of users.
-
-Installing
-----------
-
-To install the latest relased snap from the snapstore:
-
-    sudo snap install universal-ctags
-
-Or to install a build from the latest commit:
-
-    sudo snap install --edge universal-ctags
-
-Usage
------
-
-For usage instructions, see end-user docs in snap/snapcraft.yaml, or at:
-https://snapcraft.io/universal-ctags
+which are derived from the docs in `snap/snapcraft.yaml`.
 
 Hacking
 -------
+
+To install the snap from the local file produced by this repo:
+
+    sudo snap install universal-ctags*.snap --dangerous
 
 Commits to this repo are [automatically tested on Travis](https://travis-ci.org/universal-ctags/ctags-snap).
 

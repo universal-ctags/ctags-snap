@@ -10,7 +10,7 @@ description: |
   Universal Ctags is a fork of the venerable Exuberant Ctags, that adds
   additional features, including support for more languages.
   
-  ## Usage
+  **Usage**
   
   When installed, this snap provides executable `universal-ctags`,
   and alias `ctags`.
@@ -24,7 +24,7 @@ description: |
   See ctags online useage documentation at
   http://docs.ctags.io/en/latest/man/ctags.1.html
   
-  ## Limitations
+  **Limitations**
   
   Compared to universal-ctags installed using apt, or compiled from source,
   this snap currently has some limitations, introduced by snap security
