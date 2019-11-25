@@ -18,6 +18,10 @@ refresh: ## Update build dependencies.
 	sudo snap refresh --beta multipass
 	sudo snap refresh snapcraft
 
+clean: ## Remove intermediate and snap files.
+	rm -rf parts prime stage universal-ctags_*_amd64.snap
+	snapcraft clean
+
 build: snap/snapcraft.yaml ## Build the snap file.
 	rm -f universal-ctags_*_amd64.snap
 	snapcraft $(snapcraft_flags)
@@ -35,9 +39,8 @@ remove: ## Remove the installed snap
 test: ## Test the installed snap.
 	./test_ctags
 
-clean: ## Remove intermediate and snap files.
-	rm -rf parts prime stage universal-ctags_*_amd64.snap
-	snapcraft clean
+push: ## Push the single snap file to the snapstore and release it to 'edge'
+	snapcraft push universal-ctags_*_amd64.snap --release edge
 
 # run 'make VERBOSE=1' to switch off SILENT
 ifndef VERBOSE
