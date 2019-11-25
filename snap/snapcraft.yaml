@@ -98,7 +98,7 @@ parts:
       HOME=$(python3 -SIBc '"'"'
       import os, pwd
       print(pwd.getpwuid(os.getuid()).pw_dir)
-      '"'"') $dir/bin/ctags $@
+      '"'"') $dir/bin/ctags "$@"
       '
       chmod a+x universal-ctags-wrapper
 
