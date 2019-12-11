@@ -82,7 +82,7 @@ parts:
     source-type: git
     source: https://github.com/universal-ctags/ctags.git
     plugin: autotools
-    build-packages: [pkg-config]
+    build-packages: [pkg-config, libyaml-dev, libxml2-dev, libjansson-dev]
     stage-packages: [libxml2]
     override-pull: |
       snapcraftctl pull
