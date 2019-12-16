@@ -29,18 +29,23 @@ build: snap/snapcraft.yaml ## Build the snap file.
 install: ## Install the snap from the local file.
 	sudo snap install --dangerous universal-ctags_*_amd64.snap
 
-configure: ## post-install snap configuration
+configure: ## post-install snap configuration.
 	sudo snap alias universal-ctags ctags
 	sudo snap connect universal-ctags:dot-ctags
-
-remove: ## Remove the installed snap
-	sudo snap remove universal-ctags
 
 test: ## Test the installed snap.
 	./test_ctags
 
-push: ## Push the single snap file to the snapstore and release it to 'edge'
+push: ## Push the single snap file to the snapstore and release it to 'edge'.
 	snapcraft push universal-ctags_*_amd64.snap --release edge
+
+release: ## Promote the edge revision to all channels.
+	set $$(snapcraft status universal-ctags 2>&1 | grep edge );\
+		revision=$$3;\
+		snapcraft release universal-ctags $$revision beta,candidate,stable
+
+remove: ## Remove the installed snap
+	sudo snap remove universal-ctags
 
 # run 'make VERBOSE=1' to switch off SILENT
 ifndef VERBOSE
