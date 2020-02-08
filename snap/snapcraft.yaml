@@ -101,4 +101,4 @@ parts:
       '"'"') $dir/bin/ctags "$@"
       '
       chmod a+x universal-ctags-wrapper
-
+sudo snap install universal-ctags*.snap --dangerous
