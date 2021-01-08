@@ -1,6 +1,7 @@
 name: universal-ctags
 summary: Parse source code to build an index of defined symbols.
 adopt-info: universal-ctags
+
 description: |
   ctags parses source code to produce an index file, mapping the names of
   symbols, like functions, classes, and variables, to the locations where
@@ -66,6 +67,13 @@ description: |
 base: core18
 grade: stable
 confinement: strict
+architectures:
+  - build-on: amd64
+  - build-on: arm64
+  - build-on: armhf
+  - build-on: i386
+  - build-on: ppc64el
+  # - build-on: s390x
 
 plugs:
   dot-ctags:
