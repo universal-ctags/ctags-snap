@@ -1,10 +1,6 @@
 # Snapcraft builds on a VM by default, to avoid installing components that
-# might not be compatible with the host OS.
-snapcraft_flags=
-ifeq ($(CI),true)
-	# But on Travis, we don't need a VM, since the instance is ephemeral.
-	snapcraft_flags = --destructive-mode
-endif
+# might not be compatible with the host OS. We can use a container.
+snapcraft_flags=--use-lxd
 
 help: ## Display help for documented make targets.
 	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | \

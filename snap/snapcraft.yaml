@@ -64,7 +64,7 @@ description: |
   If these or other issues cause you problems, let me know at
   https://github.com/universal-ctags/ctags-snap/issues
 
-base: core18
+base: core20
 grade: stable
 confinement: strict
 architectures:
