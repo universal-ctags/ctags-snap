@@ -59,6 +59,7 @@ description: |
 base: core20
 grade: stable
 confinement: strict
+license: GPL-2.0+
 architectures:
   - build-on: amd64
   - build-on: arm64
