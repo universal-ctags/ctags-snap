@@ -1,23 +1,36 @@
 name: universal-ctags
-summary: Parse source code to build an index of defined symbols.
+summary: Universal-Ctags packaged as an installable snap for Linux
 adopt-info: universal-ctags
 
 description: |
-  ctags parses source code to produce an index file, mapping the names of
+  Ctags parses source code to produce an index file, mapping the names of
   symbols, like functions, classes, and variables, to the locations where
   they are defined. This index is used by editors like Vim and Emacs
   to enable feaures like 'go to definition'.
   
-  Universal Ctags is a fork of the venerable Exuberant Ctags, that adds
-  additional features, including support for more languages.
+  [Universal Ctags](https://ctags.io/) is an active fork of the venerable
+  [Exuberant Ctags](http://ctags.sourceforge.net/) (last release 2009), that
+  adds additional features, including support for more languages.
+  
+  This is
+  [the snap package of universal-ctags](https://snapcraft.io/universal-ctags),
+  which installs the application binary on Linux.
   
   **Usage**
   
   When installed, this snap provides executable `universal-ctags`,
   and alias `ctags`.
   
-  See ctags online useage documentation at
-  http://docs.ctags.io/en/latest/man/ctags.1.html
+  ```
+  ctags [options] [target files or directories]
+  ```
+  
+  eg. `ctags -R .`, (`-R` or `--recurse` to recursively search directories),
+  or `ctags -R --languages=python --exclude=.git src/`.
+  
+  This snap does not install the man pages. See
+  [the online universal-ctags man pages](http://docs.ctags.io/en/latest/man/ctags.1.html)
+  for options and usage details.
   
   **Limitations**
   

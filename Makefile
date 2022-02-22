@@ -25,7 +25,7 @@ build: snap/snapcraft.yaml ## Build the snap file.
 install: ## Install the snap from the local file.
 	sudo snap install --dangerous universal-ctags_*_amd64.snap
 
-configure: ## post-install snap configuration.
+configure: ## post-install snap config (only reqd installing local .snap file)
 	sudo snap alias universal-ctags ctags
 	sudo snap connect universal-ctags:dot-ctags
 
