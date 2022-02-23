@@ -9,28 +9,26 @@ description: |
   they are defined. This index is used by editors like Vim and Emacs
   to enable features like 'go to definition'.
   
-  [Universal Ctags](https://ctags.io/) is an active fork of the venerable
-  [Exuberant Ctags](http://ctags.sourceforge.net/) (last release 2009), that
+  Universal Ctags (https://ctags.io/) is an active fork of the venerable
+  Exuberant Ctags (http://ctags.sourceforge.net/, last release 2009), that
   adds additional features, including support for more languages.
   
-  This is
-  [the snap package of universal-ctags](https://snapcraft.io/universal-ctags),
-  which installs the application binary on Linux.
+  This is the snap package of universal-ctags
+  (https://snapcraft.io/universal-ctags),
+  which installs the application binary on any Linux distribution.
   
   **Usage**
   
   When installed, this snap provides executable `universal-ctags`,
   and alias `ctags`.
   
-  ```
-  ctags [options] [target files or directories]
-  ```
+     ctags [options] [target files or directories]
   
   eg. `ctags -R .` (`-R` or `--recurse` to recursively search directories),
   or `ctags -R --languages=python --exclude=.git src/`.
   
-  This snap does not install the man pages. See
-  [the online universal-ctags man pages](http://docs.ctags.io/en/latest/man/ctags.1.html)
+  This snap does not install the man pages. See the online universal-ctags man
+  pages at http://docs.ctags.io/en/latest/man/ctags.1.html
   for options and usage details.
   
   **Limitations**
@@ -61,14 +59,14 @@ description: |
      You may be able to work around this by using `-f -` and redirecting stdout
      to the required location.
   
-  5. The universal-ctags 'man' pages are not installed. But you can see them
+  5. The universal-ctags man pages are not installed. But you can see them
      online at http://docs.ctags.io/en/latest/man/ctags.1.html
   
   6. The 'etags' executable alias (which defaults to Emacs style tags files)
      is not installed. Use `ctags --output-format=etags` or `ctags -e` instead.
   
   If these or other issues cause you problems, please
-  [file an issue](https://github.com/universal-ctags/ctags-snap/issues).
+  file an issue at https://github.com/universal-ctags/ctags-snap/issues.
 
 base: core20
 grade: stable
