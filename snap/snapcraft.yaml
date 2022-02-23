@@ -1,7 +1,6 @@
 name: universal-ctags
 summary: Universal-Ctags packaged as an installable snap for Linux
 adopt-info: universal-ctags # to set a dynamically generated 'version'
-website: https://ctags.io/
 
 description: |
   Ctags parses source code to produce an index file, mapping the names of
