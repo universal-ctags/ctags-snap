@@ -1,12 +1,13 @@
 name: universal-ctags
 summary: Universal-Ctags packaged as an installable snap for Linux
-adopt-info: universal-ctags
+adopt-info: universal-ctags # to set a dynamically generated 'version'
+website: https://ctags.io/
 
 description: |
   Ctags parses source code to produce an index file, mapping the names of
   symbols, like functions, classes, and variables, to the locations where
   they are defined. This index is used by editors like Vim and Emacs
-  to enable feaures like 'go to definition'.
+  to enable features like 'go to definition'.
   
   [Universal Ctags](https://ctags.io/) is an active fork of the venerable
   [Exuberant Ctags](http://ctags.sourceforge.net/) (last release 2009), that
@@ -25,7 +26,7 @@ description: |
   ctags [options] [target files or directories]
   ```
   
-  eg. `ctags -R .`, (`-R` or `--recurse` to recursively search directories),
+  eg. `ctags -R .` (`-R` or `--recurse` to recursively search directories),
   or `ctags -R --languages=python --exclude=.git src/`.
   
   This snap does not install the man pages. See
@@ -66,12 +67,13 @@ description: |
   6. The 'etags' executable alias (which defaults to Emacs style tags files)
      is not installed. Use `ctags --output-format=etags` or `ctags -e` instead.
   
-  If these or other issues cause you problems, let me know at
-  https://github.com/universal-ctags/ctags-snap/issues
+  If these or other issues cause you problems, please
+  [file an issue](https://github.com/universal-ctags/ctags-snap/issues).
 
 base: core20
 grade: stable
 confinement: strict
+compression: lzo
 license: GPL-2.0+
 architectures:
   - build-on: amd64
